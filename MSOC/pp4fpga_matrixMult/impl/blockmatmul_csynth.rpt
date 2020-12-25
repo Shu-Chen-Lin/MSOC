@@ -1,0 +1,231 @@
+
+
+================================================================
+== Vivado HLS Report for 'blockmatmul'
+================================================================
+* Date:           Fri Dec 25 00:01:09 2020
+
+* Version:        2019.2 (Build 2704478 on Wed Nov 06 22:10:23 MST 2019)
+* Project:        solution2
+* Solution:       solution2
+* Product family: zynq
+* Target device:  xc7z020-clg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  | 10.00 ns | 8.510 ns |   1.25 ns  |
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+----------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline |
+    |   min   |   max   |    min   |    max   | min | max |   Type   |
+    +---------+---------+----------+----------+-----+-----+----------+
+    |      150|      150| 1.500 us | 1.500 us |  151|  151| dataflow |
+    +---------+---------+----------+----------+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        +-------------------------+----------------------+---------+---------+-----------+----------+-----+-----+---------+
+        |                         |                      |  Latency (cycles) |  Latency (absolute)  |  Interval | Pipeline|
+        |         Instance        |        Module        |   min   |   max   |    min    |    max   | min | max |   Type  |
+        +-------------------------+----------------------+---------+---------+-----------+----------+-----+-----+---------+
+        |Loop_memset_AB_proc9_U0  |Loop_memset_AB_proc9  |      150|      150|  1.500 us | 1.500 us |  150|  150|   none  |
+        |Loop_writeout_proc_U0    |Loop_writeout_proc    |       10|       10|  0.100 us | 0.100 us |   10|   10|   none  |
+        |Block_proc8_U0           |Block_proc8           |        1|       34| 10.000 ns | 0.340 us |    1|   34|   none  |
+        |blockmatmul_entry4_U0    |blockmatmul_entry4    |        0|        0|    0 ns   |   0 ns   |    0|    0|   none  |
+        +-------------------------+----------------------+---------+---------+-----------+----------+-----+-----+---------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+-------+-----+
+|       Name      | BRAM_18K| DSP48E|   FF   |  LUT  | URAM|
++-----------------+---------+-------+--------+-------+-----+
+|DSP              |        -|      -|       -|      -|    -|
+|Expression       |        -|      -|       0|     66|    -|
+|FIFO             |        8|      -|     205|    220|    -|
+|Instance         |        -|     48|    1344|   2001|    -|
+|Memory           |        8|      -|       0|      0|    0|
+|Multiplexer      |        -|      -|       -|     90|    -|
+|Register         |        -|      -|      13|      -|    -|
++-----------------+---------+-------+--------+-------+-----+
+|Total            |       16|     48|    1562|   2377|    0|
++-----------------+---------+-------+--------+-------+-----+
+|Available        |      280|    220|  106400|  53200|    0|
++-----------------+---------+-------+--------+-------+-----+
+|Utilization (%)  |        5|     21|       1|      4|    0|
++-----------------+---------+-------+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +-------------------------+----------------------+---------+-------+------+------+-----+
+    |         Instance        |        Module        | BRAM_18K| DSP48E|  FF  |  LUT | URAM|
+    +-------------------------+----------------------+---------+-------+------+------+-----+
+    |Block_proc8_U0           |Block_proc8           |        0|      0|    13|   182|    0|
+    |Loop_memset_AB_proc9_U0  |Loop_memset_AB_proc9  |        0|     48|  1310|  1474|    0|
+    |Loop_writeout_proc_U0    |Loop_writeout_proc    |        0|      0|    19|   325|    0|
+    |blockmatmul_entry4_U0    |blockmatmul_entry4    |        0|      0|     2|    20|    0|
+    +-------------------------+----------------------+---------+-------+------+------+-----+
+    |Total                    |                      |        0|     48|  1344|  2001|    0|
+    +-------------------------+----------------------+---------+-------+------+------+-----+
+
+    * DSP48E: 
+    N/A
+
+    * Memory: 
+    +--------+------------------+---------+---+----+-----+------+-----+------+-------------+
+    | Memory |      Module      | BRAM_18K| FF| LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
+    +--------+------------------+---------+---+----+-----+------+-----+------+-------------+
+    |AB_0_U  |blockmatmul_AB_0  |        2|  0|   0|    0|     4|   32|     2|          256|
+    |AB_1_U  |blockmatmul_AB_0  |        2|  0|   0|    0|     4|   32|     2|          256|
+    |AB_2_U  |blockmatmul_AB_0  |        2|  0|   0|    0|     4|   32|     2|          256|
+    |AB_3_U  |blockmatmul_AB_0  |        2|  0|   0|    0|     4|   32|     2|          256|
+    +--------+------------------+---------+---+----+-----+------+-----+------+-------------+
+    |Total   |                  |        8|  0|   0|    0|    16|  128|     8|         1024|
+    +--------+------------------+---------+---+----+-----+------+-----+------+-------------+
+
+    * FIFO: 
+    +--------+---------+----+----+-----+------+-----+---------+
+    |  Name  | BRAM_18K| FF | LUT| URAM| Depth| Bits| Size:D*B|
+    +--------+---------+----+----+-----+------+-----+---------+
+    |A_0_U   |        2|  50|   0|    -|    32|   32|     1024|
+    |A_1_U   |        2|  50|   0|    -|    32|   32|     1024|
+    |A_2_U   |        2|  50|   0|    -|    32|   32|     1024|
+    |A_3_U   |        2|  50|   0|    -|    32|   32|     1024|
+    |it_c_U  |        0|   5|   0|    -|     2|   32|       64|
+    +--------+---------+----+----+-----+------+-----+---------+
+    |Total   |        8| 205|   0|    0|   130|  160|     4160|
+    +--------+---------+----+----+-----+------+-----+---------+
+
+    * Expression: 
+    +------------------------------------------+----------+-------+---+----+------------+------------+
+    |               Variable Name              | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +------------------------------------------+----------+-------+---+----+------------+------------+
+    |Block_proc8_U0_ap_ready_count             |     +    |      0|  0|  10|           2|           1|
+    |Loop_memset_AB_proc9_U0_ap_ready_count    |     +    |      0|  0|  10|           2|           1|
+    |blockmatmul_entry4_U0_ap_ready_count      |     +    |      0|  0|  10|           2|           1|
+    |Block_proc8_U0_ap_start                   |    and   |      0|  0|   2|           1|           1|
+    |Loop_memset_AB_proc9_U0_ap_continue       |    and   |      0|  0|   2|           1|           1|
+    |Loop_memset_AB_proc9_U0_ap_start          |    and   |      0|  0|   2|           1|           1|
+    |Loop_writeout_proc_U0_ap_start            |    and   |      0|  0|   2|           1|           1|
+    |ap_channel_done_AB_0                      |    and   |      0|  0|   2|           1|           1|
+    |ap_channel_done_AB_1                      |    and   |      0|  0|   2|           1|           1|
+    |ap_channel_done_AB_2                      |    and   |      0|  0|   2|           1|           1|
+    |ap_channel_done_AB_3                      |    and   |      0|  0|   2|           1|           1|
+    |ap_idle                                   |    and   |      0|  0|   2|           1|           1|
+    |ap_sync_ready                             |    and   |      0|  0|   2|           1|           1|
+    |blockmatmul_entry4_U0_ap_start            |    and   |      0|  0|   2|           1|           1|
+    |ap_sync_Block_proc8_U0_ap_ready           |    or    |      0|  0|   2|           1|           1|
+    |ap_sync_Loop_memset_AB_proc9_U0_ap_ready  |    or    |      0|  0|   2|           1|           1|
+    |ap_sync_blockmatmul_entry4_U0_ap_ready    |    or    |      0|  0|   2|           1|           1|
+    |ap_sync_channel_write_AB_0                |    or    |      0|  0|   2|           1|           1|
+    |ap_sync_channel_write_AB_1                |    or    |      0|  0|   2|           1|           1|
+    |ap_sync_channel_write_AB_2                |    or    |      0|  0|   2|           1|           1|
+    |ap_sync_channel_write_AB_3                |    or    |      0|  0|   2|           1|           1|
+    +------------------------------------------+----------+-------+---+----+------------+------------+
+    |Total                                     |          |      0|  0|  66|          24|          21|
+    +------------------------------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +----------------------------------------------+----+-----------+-----+-----------+
+    |                     Name                     | LUT| Input Size| Bits| Total Bits|
+    +----------------------------------------------+----+-----------+-----+-----------+
+    |Block_proc8_U0_ap_ready_count                 |   9|          2|    2|          4|
+    |Loop_memset_AB_proc9_U0_ap_ready_count        |   9|          2|    2|          4|
+    |ap_sync_reg_Block_proc8_U0_ap_ready           |   9|          2|    1|          2|
+    |ap_sync_reg_Loop_memset_AB_proc9_U0_ap_ready  |   9|          2|    1|          2|
+    |ap_sync_reg_blockmatmul_entry4_U0_ap_ready    |   9|          2|    1|          2|
+    |ap_sync_reg_channel_write_AB_0                |   9|          2|    1|          2|
+    |ap_sync_reg_channel_write_AB_1                |   9|          2|    1|          2|
+    |ap_sync_reg_channel_write_AB_2                |   9|          2|    1|          2|
+    |ap_sync_reg_channel_write_AB_3                |   9|          2|    1|          2|
+    |blockmatmul_entry4_U0_ap_ready_count          |   9|          2|    2|          4|
+    +----------------------------------------------+----+-----------+-----+-----------+
+    |Total                                         |  90|         20|   13|         26|
+    +----------------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------------------------------------+---+----+-----+-----------+
+    |                     Name                     | FF| LUT| Bits| Const Bits|
+    +----------------------------------------------+---+----+-----+-----------+
+    |Block_proc8_U0_ap_ready_count                 |  2|   0|    2|          0|
+    |Loop_memset_AB_proc9_U0_ap_ready_count        |  2|   0|    2|          0|
+    |ap_sync_reg_Block_proc8_U0_ap_ready           |  1|   0|    1|          0|
+    |ap_sync_reg_Loop_memset_AB_proc9_U0_ap_ready  |  1|   0|    1|          0|
+    |ap_sync_reg_blockmatmul_entry4_U0_ap_ready    |  1|   0|    1|          0|
+    |ap_sync_reg_channel_write_AB_0                |  1|   0|    1|          0|
+    |ap_sync_reg_channel_write_AB_1                |  1|   0|    1|          0|
+    |ap_sync_reg_channel_write_AB_2                |  1|   0|    1|          0|
+    |ap_sync_reg_channel_write_AB_3                |  1|   0|    1|          0|
+    |blockmatmul_entry4_U0_ap_ready_count          |  2|   0|    2|          0|
+    +----------------------------------------------+---+----+-----+-----------+
+    |Total                                         | 13|   0|   13|          0|
+    +----------------------------------------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++------------------------+-----+-----+------------+---------------+--------------+
+|        RTL Ports       | Dir | Bits|  Protocol  | Source Object |    C Type    |
++------------------------+-----+-----+------------+---------------+--------------+
+|ap_clk                  |  in |    1| ap_ctrl_hs |  blockmatmul  | return value |
+|ap_rst                  |  in |    1| ap_ctrl_hs |  blockmatmul  | return value |
+|ap_start                |  in |    1| ap_ctrl_hs |  blockmatmul  | return value |
+|ap_done                 | out |    1| ap_ctrl_hs |  blockmatmul  | return value |
+|ap_ready                | out |    1| ap_ctrl_hs |  blockmatmul  | return value |
+|ap_idle                 | out |    1| ap_ctrl_hs |  blockmatmul  | return value |
+|Arows_V_a_0_dout        |  in |   32|   ap_fifo  |  Arows_V_a_0  |    pointer   |
+|Arows_V_a_0_empty_n     |  in |    1|   ap_fifo  |  Arows_V_a_0  |    pointer   |
+|Arows_V_a_0_read        | out |    1|   ap_fifo  |  Arows_V_a_0  |    pointer   |
+|Arows_V_a_1_dout        |  in |   32|   ap_fifo  |  Arows_V_a_1  |    pointer   |
+|Arows_V_a_1_empty_n     |  in |    1|   ap_fifo  |  Arows_V_a_1  |    pointer   |
+|Arows_V_a_1_read        | out |    1|   ap_fifo  |  Arows_V_a_1  |    pointer   |
+|Arows_V_a_2_dout        |  in |   32|   ap_fifo  |  Arows_V_a_2  |    pointer   |
+|Arows_V_a_2_empty_n     |  in |    1|   ap_fifo  |  Arows_V_a_2  |    pointer   |
+|Arows_V_a_2_read        | out |    1|   ap_fifo  |  Arows_V_a_2  |    pointer   |
+|Arows_V_a_3_dout        |  in |   32|   ap_fifo  |  Arows_V_a_3  |    pointer   |
+|Arows_V_a_3_empty_n     |  in |    1|   ap_fifo  |  Arows_V_a_3  |    pointer   |
+|Arows_V_a_3_read        | out |    1|   ap_fifo  |  Arows_V_a_3  |    pointer   |
+|Bcols_V_a_0_dout        |  in |   32|   ap_fifo  |  Bcols_V_a_0  |    pointer   |
+|Bcols_V_a_0_empty_n     |  in |    1|   ap_fifo  |  Bcols_V_a_0  |    pointer   |
+|Bcols_V_a_0_read        | out |    1|   ap_fifo  |  Bcols_V_a_0  |    pointer   |
+|Bcols_V_a_1_dout        |  in |   32|   ap_fifo  |  Bcols_V_a_1  |    pointer   |
+|Bcols_V_a_1_empty_n     |  in |    1|   ap_fifo  |  Bcols_V_a_1  |    pointer   |
+|Bcols_V_a_1_read        | out |    1|   ap_fifo  |  Bcols_V_a_1  |    pointer   |
+|Bcols_V_a_2_dout        |  in |   32|   ap_fifo  |  Bcols_V_a_2  |    pointer   |
+|Bcols_V_a_2_empty_n     |  in |    1|   ap_fifo  |  Bcols_V_a_2  |    pointer   |
+|Bcols_V_a_2_read        | out |    1|   ap_fifo  |  Bcols_V_a_2  |    pointer   |
+|Bcols_V_a_3_dout        |  in |   32|   ap_fifo  |  Bcols_V_a_3  |    pointer   |
+|Bcols_V_a_3_empty_n     |  in |    1|   ap_fifo  |  Bcols_V_a_3  |    pointer   |
+|Bcols_V_a_3_read        | out |    1|   ap_fifo  |  Bcols_V_a_3  |    pointer   |
+|ABpartial_out_address0  | out |    4|  ap_memory | ABpartial_out |     array    |
+|ABpartial_out_ce0       | out |    1|  ap_memory | ABpartial_out |     array    |
+|ABpartial_out_d0        | out |   32|  ap_memory | ABpartial_out |     array    |
+|ABpartial_out_q0        |  in |   32|  ap_memory | ABpartial_out |     array    |
+|ABpartial_out_we0       | out |    1|  ap_memory | ABpartial_out |     array    |
+|ABpartial_out_address1  | out |    4|  ap_memory | ABpartial_out |     array    |
+|ABpartial_out_ce1       | out |    1|  ap_memory | ABpartial_out |     array    |
+|ABpartial_out_d1        | out |   32|  ap_memory | ABpartial_out |     array    |
+|ABpartial_out_q1        |  in |   32|  ap_memory | ABpartial_out |     array    |
+|ABpartial_out_we1       | out |    1|  ap_memory | ABpartial_out |     array    |
+|it                      |  in |   32|   ap_none  |       it      |    scalar    |
++------------------------+-----+-----+------------+---------------+--------------+
+
